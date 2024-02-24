@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: code-srv-deployment
+  namespace: code-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: code-server
+  template:
+    metadata:
+      labels:
+        app: code-server
+    spec:
+      containers:
+      - name: code-server
+        image: lscr.io/linuxserver/code-server:latest
+        ports:
+        - containerPort: 8443
+          name: dns
+          protocol: UDP
+        volumeMounts:
+          - name: code-workspace
+            mountPath: /workspace
+          - name: code-data
+            mountPath: /config
+      volumes:
+      - name: code-workspace
+        hostPath:
+          path: /nfs-data/code-server/
+          type: Directory
+      - name: code-data
+        hostPath:
+          path: /data/codeserver
+          type: Directory
+      

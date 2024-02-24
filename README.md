@@ -1,1 +1,1 @@
-# code-server
+# code-server k3s deployment
