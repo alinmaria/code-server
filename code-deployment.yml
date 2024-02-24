@@ -20,16 +20,10 @@ spec:
         - containerPort: 8443
           name: dns
           protocol: UDP
-        volumeMounts:
-          - name: code-workspace
-            mountPath: /workspace
+        volumeMounts
           - name: code-data
             mountPath: /config
       volumes:
-      - name: code-workspace
-        hostPath:
-          path: /nfs-data/code-server/
-          type: Directory
       - name: code-data
         hostPath:
           path: /data/codeserver
