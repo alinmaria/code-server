@@ -20,7 +20,7 @@ spec:
         - containerPort: 8443
           name: dns
           protocol: UDP
-        volumeMounts
+        volumeMounts:
           - name: code-data
             mountPath: /config
       volumes:
